@@ -1,0 +1,21 @@
+{
+  "bitwise": true,
+  "browser": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "expr": true,
+  "freeze": true,
+  "funcscope": true,
+  "immed": true,
+  "indent": 4,
+  "maxlen": 120,
+  "undef": true,
+  "unused": true,
+  "maxdepth": 5,
+  "maxcomplexity": 10,
+  "maxstatements": 100,
+  "predef": ["angular", "jQuery", "moment"],
+  "quotmark": "double",
+  "sub": true
+}

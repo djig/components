@@ -1,0 +1,42 @@
+
+ /*D3JS asof Date Dirctive related CSS*/
+ .zoomAsOfDate{
+
+    width: 910px;
+ }
+ .svgWraper{
+      -webkit-transform: rotateX(-50deg) skew(15deg,10deg);
+      -ms-transform: rotateX(-50deg) skew(15deg,10deg);
+      -moz-transform: rotateX(-50deg) skew(15deg,10deg);
+      -o-transform: rotateX(-50deg) skew(15deg,10deg);
+      box-shadow: -2px 2px 2px rgba( 0, 0, 0, 0.6 );
+      border-radius: 100px;
+      border-width: 0px;
+      border-style: solid;
+      border-color: RGBA(0, 0, 0, 0.08);
+      background-color: RGBA(255, 255, 255, 0.51);
+ }
+ .marg{
+     margin-left: -100px;
+ }
+ .margA{
+     margin-left: -60px;
+
+     -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+     -o-transition: all 1s ease;
+     transition: all 1s ease;
+ }
+ .svgWraper:hover{
+    -webkit-transform: rotateX(0deg) skew(0deg,0deg);
+    -ms-transform: rotateX(0deg) skew(0deg,0deg);
+    -moz-transform: rotateX(0deg) skew(0deg,0deg);
+    -o-transform: rotateX(0deg) skew(0deg,0deg);
+    background-color: white;
+    border-width: 1px;
+    z-index: 99999;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+ }

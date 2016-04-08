@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+  <head>
+    <meta charset="utf-8" />
+    <title>Created Jignesh Dhamecha</title>
+     <link rel="stylesheet" href="vendor.css"/>
+    <link rel="stylesheet" href="component.css" />
+    <script src="vendor.js"></script>
+    <script src="component.js"></script>
+    <script src="demo.app.js"></script>
+  </head>
+  <body  >
+     <div class="container" ng-controller="asofdateController">
+      <div class="row zoomAsOfDate">
+        <div  id="d3_0" class="col-xs-3 col-lg-2 mainC2 ">
+          <as_Of_Date id='main2011' options=options1 vals=vals1>
+          </as_Of_Date>
+        </div>
+           <div id="d3_1" class="col-xs-3 mainC2 marg">
+              <as_Of_Date id='main2012' options=options2 vals=vals2></as_Of_Date>
+          </div>
+          <div id="d3_2" class="col-xs-3  mainC2 marg">
+            <as_Of_Date id='main2013' options=options3 vals=vals3></as_Of_Date>
+          </div>
+
+           <div  id="d3_4" class="col-xs-3  mainC2 marg">
+             <as_Of_Date id='main2015' options=options4 vals=vals4></as_Of_Date>
+           </div>
+           <div  id="d3_5" class="col-xs-3  mainC2 marg">
+             <as_Of_Date id='main2016' options=options5 vals=vals5></as_Of_Date>
+           </div>
+      </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+      $(".mainC2").hover(function () {
+          d3AsOfMouseLeave(this);
+        //stuff to do on mouse enter
+        if($(this).attr("class").indexOf('marg')>-1 ){
+             console.log("ji" );
+            $("this").addClass("margA");
+            var id= $(this).attr("id");
+            console.log($("#"+id+" ~ .mainC2")[0]);
+            var nextElement=$("#"+id+" ~ .mainC2")[0];
+              $(nextElement).addClass("margA");
+            //$("#"+id+" ~ .mainC2").addClass("margA");
+        }
+        else{
+           $(".mainC2:nth-child(2)").addClass("margA");
+        }
+      },
+      function () {
+            d3AsOfMouseLeave(this);
+          });
+    });
+    function d3AsOfMouseLeave(e){
+      //stuff to do on mouse leave
+        $(e).removeClass("margA");
+        $(".mainC2:nth-child(2)").removeClass("margA",1000);
+        var id= $(e).attr("id");
+        $("#"+id+" ~ .mainC2").removeClass("margA",1000);
+    }
+
+
+
+    </script>
+
+
+
+
+  </body>
+
+</html>
