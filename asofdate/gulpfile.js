@@ -168,25 +168,3 @@ gulp.task('server', function() {
     }
   });
 });
-
-// gulp.task("e2e-test", ["server"], function(done) {
-// 	exec("protractor protractor.conf.js", function(err, stdout) {
-// 		console.log(stdout);
-// 		connect.serverClose();
-// 		done();
-// 	});
-// });
-//
-// var postProcessJunitTestReports = function() {
-// 	return gulp.src('target/jstestdriver/*.xml')
-// 		.pipe(replace(' PhantomJS 1.9.8 (Linux)', '.unit'))
-// 		.pipe(gulp.dest('target/jstestdriver'));
-// };
-//
-// gulp.task("unit-test", function(done) {
-// 	return karma.start({
-// 		configFile: __dirname + "/karma.conf.js",
-// 		singleRun: true
-// 	}, postProcessJunitTestReports);
-// });
- 

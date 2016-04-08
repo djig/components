@@ -90,7 +90,7 @@ asOfDate.directive("asOfDate",['appSetting', function(appSetting){
                     if((diff/1000)>2){
                         zoomC(d, d.id, 'mo');
                     }
-                    })
+                  })
                     .style("fill", function (d) {
                      return d.color;
                     })
