@@ -9,7 +9,6 @@ var concat = require("gulp-concat");
 var newer = require("gulp-newer");
 var gulpif = require("gulp-if");
 var eventStream = require("event-stream");
-var connect = require("gulp-connect");
 var html2js = require("gulp-ng-html2js");
 var replace = require("gulp-replace");
 var path = require("path");
@@ -17,7 +16,7 @@ var jshint = require("gulp-jshint");
 var csslint = require("gulp-csslint");
 var $ = require('gulp-load-plugins')();
 
-var srcHtml = ["component/src/index.html"];
+// var srcHtml = ["component/src/index.html"];
 var srcSass = ["component/src/**/*.css"];
 var srcJs = [
     "component/src/**/*.module.js",
@@ -30,50 +29,50 @@ var demoJs = [
 ];
 
 var distDirectory = "dist";
-var demoDirectory = distDirectory + "/demo";
+var demoDirectory = distDirectory + "/demo/";
 var srcImgDirectory = ["component/src/images/*"];
 
 var demoHtml = "component/demo/index.html";
 
 var vendorSrcJs = [
-	"node_modules/angular/angular.js",
-	"node_modules/jquery/dist/jquery.js",
-  "node_modules/d3/d3.js",
-  "node_modules/underscore/underscore.js"
+	"node_modules/angular/angular.min.js",
+	"node_modules/jquery/dist/jquery.min.js",
+  "node_modules/d3/d3.min.js",
+  "node_modules/underscore/underscore-min.js"
 ];
 
 var vendorSrcCss = [
-    	"node_modules/bootstrap/dist/css/bootstrap.css"
+    	"node_modules/bootstrap/dist/css/bootstrap.min.css"
 ];
 
 
 // Tasks
-gulp.task("default", ["watch"]);
+gulp.task("default", ["build"]);
 
-gulp.task("watch", ["build"], function() {
-	gulp.watch([srcHtml, demoHtml], ["html"]);
+gulp.task("watch",  function() {
+	gulp.watch(demoHtml, ["html"]);
 	gulp.watch(srcSass, ["sass"]);
 	gulp.watch([srcJs, demoJs], ["js"]);
-
 });
-
-gulp.task("build", ["html", "sass", "js", "img", "vendor"]);
+//
+ gulp.task("build", ["html", "sass", "js", "img", "vendor","server",'watch']);
+//gulp.task("build", ["html","server",'watch']);
 gulp.task("clean", function() {
-	return gulp.src(distDirectory, { read: false })
+	return gulp.src(demoDirectory, { read: false })
 		.pipe(clean());
 });
 
-
-
-gulp.task("html", function() {
-	return eventStream.merge(
-		compileHtml(demoHtml, distDirectory + "/demo")
-	);
+gulp.task('html', function() {
+  return gulp.src(demoHtml)
+    .pipe(minifyHTML({empty: true, spare: true}))
+    .pipe(gulp.dest(demoDirectory ))
+    .pipe($.size({ title : 'html' }))
+    .pipe($.connect.reload());
 });
 
 gulp.task("sass", function() {
 	return eventStream.merge(
-		compileSass(srcSass, distDirectory+ "/demo", "component.css")
+		compileSass(srcSass, demoDirectory, "component.css",true,false)
 	);
 });
 
@@ -110,7 +109,7 @@ gulp.task("vendor", function() {
       vendorSrcJs,
       demoDirectory,
       "vendor.js",
-      true,
+      false,
       true),
 		gulp.src(vendorSrcCss)
 			.pipe(concat("vendor.css"))
@@ -118,13 +117,10 @@ gulp.task("vendor", function() {
 	);
 });
 
-
-
-
 function compileHtml(source, destination) {
 	return gulp.src(source)
-		.pipe(newer(distDirectory))
-		// .pipe(minifyHTML({empty: true, spare: true}))
+		.pipe(newer(demoDirectory))
+		.pipe(minifyHTML({empty: true, spare: true}))
 
 		.pipe(gulp.dest(destination))
     .pipe($.connect.reload());
@@ -158,13 +154,12 @@ function compileJsAndMaybeHtml(source, destination, concatName, minify, showErro
 		.pipe(gulp.dest(destination))
     .pipe($.connect.reload());
 }
-
-gulp.task('server', function() {
+gulp.task('server', function(done) {
   $.connect.server({
-    root: distDirectory,
-    port: 4000,
+    root: demoDirectory ,
+    port: $.util.env.port || 1337,
     livereload: {
-      port: 30000
+      port: 35729
     }
   });
 });

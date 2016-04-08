@@ -1,8 +1,7 @@
 
  /*D3JS asof Date Dirctive related CSS*/
  .zoomAsOfDate{
-
-    width: 910px;
+    width: 920px;
  }
  .svgWraper{
       -webkit-transform: rotateX(-50deg) skew(15deg,10deg);
