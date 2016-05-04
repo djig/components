@@ -15,8 +15,7 @@ var path = require("path");
 var jshint = require("gulp-jshint");
 var csslint = require("gulp-csslint");
 var $ = require('gulp-load-plugins')();
-
-// var srcHtml = ["component/src/index.html"];
+ 
 var srcSass = ["component/src/**/*.css"];
 var srcJs = [
     "component/src/**/*.module.js",
