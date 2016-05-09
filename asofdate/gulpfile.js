@@ -36,16 +36,14 @@ var demoHtml = "component/demo/index.html";
 var vendorSrcJs = [
 	"node_modules/angular/angular.min.js",
 	"node_modules/jquery/dist/jquery.min.js",
-  "node_modules/d3/d3.min.js",
-  "node_modules/underscore/underscore-min.js"
+    "node_modules/d3/d3.min.js",
+     "node_modules/underscore/underscore-min.js"
 ];
 
 var vendorSrcCss = [
     	"node_modules/bootstrap/dist/css/bootstrap.min.css"
 ];
-
-
-// Tasks
+ 
 gulp.task("default", ["build"]);
 
 gulp.task("watch",  function() {
